@@ -27,7 +27,7 @@ describe('<Header /> component shallow', () => {
       showLogin: false,
       username: '',
       password: '',
-      logo: '',
+      logoURL: '',
       loginError: null
     };
     const HeaderWrapper = wrapper.find(Header).dive();
