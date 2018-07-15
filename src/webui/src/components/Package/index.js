@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Tag} from 'element-react';
 import {Link} from 'react-router-dom';
@@ -7,10 +7,10 @@ import {formatDateDistance} from '../../utils/DateUtils';
 
 import classes from './package.scss';
 
-export default class Package extends React.Component {
+export default class Package extends Component {
   static propTypes = {
     package: PropTypes.object
-  }
+  };
 
   render() {
     const {package: pkg} = this.props;
@@ -22,9 +22,7 @@ export default class Package extends React.Component {
             {this.renderTitle(pkg)}
             {this.renderAuthor(pkg)}
           </div>
-          <div className={classes.footer}>
-            {this.renderDescription(pkg)}
-          </div>
+          <div className={classes.footer}>{this.renderDescription(pkg)}</div>
           <div className={classes.details}>
             {this.renderPublished(pkg)}
             {this.renderLicense(pkg)}
@@ -34,28 +32,24 @@ export default class Package extends React.Component {
     );
   }
 
-  renderPublished(pkg) {
-      return (<div className={classes.homepage}>
-        {pkg.time ? `Published ${formatDateDistance(pkg.time)} ago`: ''}
-      </div>);
+  renderPublished({time}) {
+    return (
+      <div className={classes.homepage}>
+        {time ? `Published ${formatDateDistance(time)} ago` : ''}
+      </div>
+    );
   }
 
-  renderLicense(pkg) {
-    if (pkg.license) {
-      return (<div className={classes.license}>
-        {pkg.license}
-      </div>);
+  renderLicense({license}) {
+    if (license) {
+      return <div className={classes.license}>{license}</div>;
     }
 
     return null;
   }
 
-  renderDescription(pkg) {
-    return (
-      <p className={classes.description}>
-        {pkg.description}
-      </p>
-    );
+  renderDescription({description}) {
+    return <p className={classes.description}>{description}</p>;
   }
 
   renderTitle(pkg) {
@@ -68,15 +62,17 @@ export default class Package extends React.Component {
     );
   }
 
-  renderTag(pkg) {
-    return <Tag type="gray">v{pkg.version}</Tag>;
+  renderTag({version}) {
+    return <Tag type="gray">v{version}</Tag>;
   }
 
-  renderAuthor(pkg) {
-    if (isNil(pkg.author) || isNil(pkg.author.name)) {
+  renderAuthor({author}) {
+    if (isNil(author) || isNil(author.name)) {
       return;
     }
 
-    return <div role="author" className={classes.author}>{`By: ${pkg.author.name}`}</div>;
+    return (
+      <div role="author" className={classes.author}>{`By: ${author.name}`}</div>
+    );
   }
 }

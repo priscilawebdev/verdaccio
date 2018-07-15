@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import classes from './404.scss';
 
-const NotFound = (props) => {
+const NotFound = ({pkg}) => {
     return (
       <div className={classes.notFound}>
-        <h1>Error 404 - {props.pkg}</h1>
+        <h1>Error 404 - {pkg}</h1>
         <hr/>
         <p>
           Oops, The package you are trying to access does not exist.

@@ -12,14 +12,14 @@ export default class PackageList extends React.Component {
   static propTypes = {
     packages: PropTypes.array,
     help: PropTypes.bool
-  }
+  };
 
   render() {
     return (
       <div className="package-list-items">
         <div className={classes.pkgContainer}>
           {this.renderTitle()}
-          {this.isTherePackages() ? this.renderList(): this.renderOptions()}
+          {this.isTherePackages() ? this.renderList() : this.renderOptions()}
         </div>
       </div>
     );
@@ -29,13 +29,14 @@ export default class PackageList extends React.Component {
     if (this.isTherePackages() === false) {
       return;
     }
-
-    return <h1 className={ classes.listTitle }>Available Packages</h1>;
+    return <h1 className={classes.listTitle}>Available Packages</h1>;
   }
 
   renderList() {
-    return this.props.packages.map((pkg, i)=> (
-      <li key={i}><Package package={pkg} /></li>
+    return this.props.packages.map((pkg, i) => (
+      <li key={i}>
+        <Package package={pkg} />
+      </li>
     ));
   }
 
@@ -48,14 +49,19 @@ export default class PackageList extends React.Component {
   }
 
   renderNoItems() {
-   return <NoItems className="package-no-items" text={'No items were found with that query'}/>;
+    return (
+      <NoItems
+        className="package-no-items"
+        text={'No items were found with that query'}
+      />
+    );
   }
 
   renderHelp() {
     if (this.props.help === false) {
       return;
     }
-    return <Help/>;
+    return <Help />;
   }
 
   isTherePackages() {

@@ -51,7 +51,7 @@ footer.footer {
   }
 
   // Footer Hover
-  &.showAuthorsGeographic .tooltip,
+  &.authorsGeographic .tooltip,
   &:hover .tooltip {
     display: flex;
     transform: scaleX(1);
