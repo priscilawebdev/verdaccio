@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Form, Button, Dialog, Input, Alert} from 'element-react';
 import isString from 'lodash/isString';
 import isNumber from 'lodash/isNumber';
-import capitalize from 'lodash/capitalize';
 import {Link} from 'react-router-dom';
 
 import API from '../../../utils/api';
@@ -141,14 +140,14 @@ export default class Header extends Component {
    * @todo Check jwt token expire
    */
   renderUserActionButton() {
-    const username = capitalize(storage.getItem('username'));
+    const username = storage.getItem('username');
     const {headerButton} = classes;
     if (!this.isTokenExpire) {
       return (
         <div className="user-logged">
           <span
             className="user-logged-greetings"
-            style={{marginRight: '10px'}}
+            style={{marginRight: '10px', textTransform: 'capitalize'}}
           >
             Hi, {username}
           </span>
@@ -180,7 +179,7 @@ export default class Header extends Component {
       toggleLoginModal,
       handleInput,
       handleSubmit,
-      renderUserActionButton,
+      renderUserActionButton
     } = this;
     return (
       <header className={classes.header}>
