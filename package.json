@@ -86,11 +86,13 @@
     "enzyme-adapter-react-16": "1.1.1",
     "eslint": "5.2.0",
     "eslint-config-google": "0.9.1",
-    "eslint-loader": "2.1.0",
-    "eslint-plugin-babel": "5.1.0",
-    "eslint-plugin-flowtype": "2.50.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-loader": "2.0.0",
+    "eslint-plugin-babel": "4.1.2",
+    "eslint-plugin-flowtype": "2.49.3",
     "eslint-plugin-import": "2.13.0",
-    "eslint-plugin-jest": "21.18.0",
+    "eslint-plugin-jest": "21.17.0",
+    "eslint-plugin-prettier": "2.6.2",
     "eslint-plugin-react": "7.10.0",
     "file-loader": "1.1.11",
     "flow-bin": "0.77.0",
@@ -104,7 +106,8 @@
     "jest": "23.4.1",
     "jest-environment-jsdom": "23.4.0",
     "jest-environment-jsdom-global": "1.1.0",
-    "jest-environment-node": "23.4.0",
+    "jest-environment-node": "23.2.0",
+    "lint-staged": "7.2.0",
     "localstorage-memory": "1.0.2",
     "mini-css-extract-plugin": "0.4.1",
     "node-mocks-http": "1.7.0",
@@ -112,6 +115,7 @@
     "normalize.css": "8.0.0",
     "optimize-css-assets-webpack-plugin": "5.0.0",
     "ora": "1.4.0",
+    "prettier": "1.13.7",
     "prop-types": "15.6.1",
     "puppeteer": "1.1.1",
     "react": "16.2.0",
@@ -185,31 +189,15 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
   },
-  "bundlesize": [
-    {
-      "path": "./static/vendor*.js",
-      "maxSize": "200 kB"
-    },
-    {
-      "path": "./static/[0-9].*.js",
-      "maxSize": "20 kB"
-    },
-    {
-      "path": "./static/[1-9].*.css",
-      "maxSize": "5 kB"
-    },
-    {
-      "path": "./static/0.*.css",
-      "maxSize": "45 kB"
-    },
-    {
-      "path": "./build/**/*.js",
-      "maxSize": "5.50 kB"
-    }
-  ],
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "license": "MIT",
   "commitlint": {
     "extends": [
